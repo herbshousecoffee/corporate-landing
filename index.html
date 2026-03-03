@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Herb's at the Curb -- Corporate Membership | Herb's House Coffee</title>
+  <title>Herb's at the Curb | Corporate Membership | Herb's House Coffee</title>
   <meta name="description" content="Bring a full-service craft coffee shop to your workplace every week. $500/month. Up to 60 employees. Zero logistics.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -208,14 +208,30 @@
        TOP BAR
        ============================================ */
     .top-bar {
-      background: var(--blue-hero);
-      padding: 1rem 0;
+      background: var(--blue-deeper);
+      padding: 0.75rem 0;
     }
 
     .top-bar .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+
+    @media (max-width: 479px) {
+      .logo-text {
+        display: none;
+      }
+
+      .logo-mark {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      .nav-pill {
+        font-size: 0.5625rem;
+        padding: 0.2rem 0.5rem;
+      }
     }
 
     .logo-group {
@@ -715,6 +731,17 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+    }
+
+    @media (max-width: 479px) {
+      .pricing-card-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .pricing-card-price {
+        text-align: center;
+      }
     }
 
     @media (min-width: 480px) {
@@ -1579,6 +1606,33 @@
         padding: 1.5rem 1rem;
         min-height: 80px;
       }
+
+      /* Pull quote tighter on mobile */
+      .pull-quote blockquote {
+        font-size: clamp(1.125rem, 5vw, 1.375rem);
+      }
+
+      /* Mid-CTA text size down to avoid orphans */
+      .mid-cta p {
+        font-size: 1.125rem;
+      }
+
+      /* Herbster stats wrap better */
+      .herbster-stats {
+        gap: 1rem;
+      }
+
+      /* Hero CTA buttons full-width on small screens */
+      .hero-cta-group {
+        flex-direction: column;
+      }
+
+      .hero-cta-group .btn-primary,
+      .hero-cta-group .btn-secondary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
     }
 
     /* Mid-range tablet refinements */
@@ -1595,7 +1649,7 @@
        STICKY CTA BAR
        ========================================== -->
   <div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Quick contact">
-    <p>$500/mo -- Craft coffee for your whole team</p>
+    <p>$500/mo - Craft coffee for your whole team</p>
     <a href="#contact" class="btn-sticky">Talk to Our Team</a>
   </div>
 
@@ -1626,7 +1680,7 @@
       <div class="hero-content">
         <p class="hero-eyebrow">Corporate Membership Program</p>
         <h1 id="hero-heading">Not a Coffee Break.<br>A Coffee <em>Experience.</em></h1>
-        <p class="hero-sub">Herb's at the Curb brings a full-service craft coffee shop directly to your workplace -- every single week.</p>
+        <p class="hero-sub">Herb's at the Curb brings a full-service craft coffee shop directly to your workplace, every single week.</p>
         <div class="hero-cta-group">
           <a href="#contact" class="btn-primary">Talk to Our Team</a>
           <a href="#how-it-works" class="btn-secondary">See How It Works</a>
@@ -1659,7 +1713,7 @@
       <div class="container">
         <p class="section-label">Why Herb's at the Curb</p>
         <h2 class="section-headline" id="intro-heading">The Easiest Employee Perk You'll Ever Set Up</h2>
-        <p class="section-body">Imagine this: every week, a custom vintage-styled mobile coffee shop pulls up to your office. Your team orders craft beverages from their phones. A professional barista crew makes every drink fresh -- right there, right then. No pods. No stale breakroom pot. No reimbursement spreadsheets.</p>
+        <p class="section-body">Imagine this: every week, a custom vintage-styled mobile coffee shop pulls up to your office. Your team orders craft beverages from their phones. A professional barista crew makes every drink fresh. Right there, right then. No pods. No stale breakroom pot. No reimbursement spreadsheets.</p>
         <p class="intro-highlight">One monthly fee. Zero logistics. Sixty happy employees.</p>
       </div>
     </section>
@@ -1685,7 +1739,7 @@
               <line x1="16" y1="34" x2="32" y2="34"/>
             </svg>
             <h3>Sign Up</h3>
-            <p>Your company enrolls in the Corporate Membership program. Month-to-month -- no long-term commitment required.</p>
+            <p>Your company enrolls in the Corporate Membership program. Month-to-month, no long-term commitment required.</p>
           </div>
 
           <!-- Step 2 -->
@@ -1698,7 +1752,7 @@
               <path d="M21 24l2 2 4-4"/>
             </svg>
             <h3>Add Your Team</h3>
-            <p>A dedicated admin portal lets you onboard employees in minutes. Share an invite code -- they download the app and they're in.</p>
+            <p>A dedicated admin portal lets you onboard employees in minutes. Share an invite code, they download the app and they're in.</p>
           </div>
 
           <!-- Step 3 -->
@@ -1889,7 +1943,7 @@
           Herb's Gold
         </div>
         <h2 class="section-headline" id="benefits-heading">Your Employees Become Herb's Gold Members</h2>
-        <p class="benefits-intro">Every employee on your corporate plan automatically receives a complimentary Herb's Gold membership -- our baseline membership tier for the Herb's at the Curb service. That means your team doesn't just get weekly coffee at the office. They get access to the full Herb's at the Curb experience.</p>
+        <p class="benefits-intro">Every employee on your corporate plan automatically receives a complimentary Herb's Gold membership, our baseline membership tier for the Herb's at the Curb service. That means your team doesn't just get weekly coffee at the office. They get access to the full Herb's at the Curb experience.</p>
 
         <div class="benefits-grid">
           <!-- Benefit 1: Proximity ordering -->
@@ -1980,7 +2034,7 @@
           <p class="section-label">Limited Availability</p>
           <h2 class="section-headline" id="launch-heading">Become a Launch Partner</h2>
           <div class="launch-offer-pill"><span class="offer-pill offer-pill--exclusive">Exclusive Offer &mdash; Founding Partners Only</span></div>
-          <p class="section-body">Herb's at the Curb is launching in Park Cities and North Dallas -- and we're building our founding network of corporate partners now. Early corporate members don't just get premium coffee service. They get a front-row seat to something new.</p>
+          <p class="section-body">Herb's at the Curb is launching in Park Cities and North Dallas, and we're building our founding network of corporate partners now. Early corporate members don't just get premium coffee service. They get a front-row seat to something new.</p>
 
           <ul class="launch-benefits">
             <li>Become an official Herb's at the Curb proximity service location</li>
@@ -2012,12 +2066,12 @@
             <path d="M8 38 l10-12 6 6 8-10 12 16"/>
           </svg>
           <p class="placeholder-label">Photo</p>
-          <p class="placeholder-desc">The Herbster -- full exterior shot, vintage styling, service window open, barista crew visible</p>
+          <p class="placeholder-desc">The Herbster, full exterior shot, vintage styling, service window open, barista crew visible</p>
         </div>
         <div class="herbster-content">
           <p class="section-label">Our Mobile Coffee Shop</p>
           <h2 class="section-headline" id="herbster-heading">Meet The Herbster</h2>
-          <p class="section-body">The Herbster is a custom-built, vintage-styled mobile coffee shop -- a full espresso bar, cold brew station, and beverage production facility on wheels. Professional barista crew. Disney-level attention to detail. Made to impress.</p>
+          <p class="section-body">The Herbster is a custom-built, vintage-styled mobile coffee shop: a full espresso bar, cold brew station, and beverage production facility on wheels. Professional barista crew. Disney-level attention to detail. Made to impress.</p>
           <div class="herbster-stats">
             <div class="herbster-stat">
               <div class="herbster-stat-value">Pro Crew</div>
@@ -2044,7 +2098,7 @@
         <div class="contact-info fade-in">
           <p class="section-label">Get Started</p>
           <h2 class="section-headline" id="contact-heading">Let's Bring Herb's to Your Team</h2>
-          <p class="section-body">Ready to give your team the best coffee perk in Dallas? We'd love to talk. Reach out to schedule a tasting visit -- we'll bring The Herbster to your office so your team can experience it firsthand.</p>
+          <p class="section-body">Ready to give your team the best coffee perk in Dallas? We'd love to talk. Reach out to schedule a tasting visit. We'll bring The Herbster to your office so your team can experience it firsthand.</p>
 
           <div class="contact-person">
             <p class="contact-name">Robin Skinner</p>
