@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herb's at the Curb | Made Fresh At Your Door | Herb's House Coffee</title>
+  <meta name="description" content="Premium craft coffee, made fresh at your door. Join the Herb's at the Curb membership. Starting at $30/month with a free 7-day trial. Park Cities & North Dallas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       CSS RESET & BASE
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1E2A36;
+      background-color: #FFFFFF;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============================================
+       DESIGN TOKENS
+       ============================================ */
+    :root {
+      /* Primary accent -- brand blue */
+      --blue: #1A6099;
+      --blue-dark: #144F80;
+      --blue-deeper: #0D4068;
+      --blue-light: #EAF2F9;
+      --blue-muted: #7FADC8;
+      --blue-hero: #1d6aad;
+
+      /* Secondary accent -- gold */
+      --gold: #C9A84C;
+      --gold-text: #8A7328;
+      --gold-light: #E8D5A0;
+      --gold-glow: #F5E6BC;
+
+      /* Warm tones -- consumer energy */
+      --espresso: #2C1810;
+      --dark-roast: #3B2A1A;
+      --medium-roast: #5C3D2E;
+      --light-roast: #8B6F5E;
+      --crema: #C4A882;
+
+      /* Warm accent palette (consumer-specific) */
+      --warm-coral: #D4785C;
+      --warm-peach: #F2D5C4;
+      --warm-sunset: #E8956A;
+
+      /* Neutrals */
+      --cream: #FFFFFF;
+      --warm-white: #F8FAFB;
+      --linen: #EDF2F6;
+      --tan: #E0E7ED;
+      --warm-gray: #5C6F7F;
+
+      /* Accent */
+      --rust: #A0522D;
+      --deep-green: #2D4A3E;
+
+      /* Functional */
+      --text-primary: #1A2632;
+      --text-secondary: #344B60;
+      --text-muted: #506577;
+
+      /* Typography scale */
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-brand: 'Arvo', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+
+      /* Spacing */
+      --section-pad: clamp(3rem, 8vw, 6rem);
+      --content-max: 1140px;
+
+      /* Transitions */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ============================================
+       UTILITY CLASSES
+       ============================================ */
+    .container {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+    }
+
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      color: var(--blue-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-body {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    /* ============================================
+       ANIMATION -- Fade in on scroll
+       ============================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       STICKY CTA BAR
+       ============================================ */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--blue-deeper);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 100;
+      transform: translateY(100%);
+      transition: transform 0.4s var(--ease-out);
+    }
+
+    .sticky-cta.visible {
+      transform: translateY(0);
+    }
+
+    .sticky-cta p {
+      color: var(--linen);
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .sticky-cta p {
+        display: block;
+      }
+    }
+
+    .sticky-cta .btn-sticky {
+      background: var(--gold);
+      color: var(--blue-deeper);
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.625rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .sticky-cta .btn-sticky:hover {
+      background: var(--gold-light);
+      transform: scale(1.02);
+    }
+
+    /* ============================================
+       TOP BAR / NAV
+       ============================================ */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--blue-deeper);
+      padding: 0.75rem 0;
+    }
+
+    .top-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 2rem;
+      height: 2rem;
+      flex-shrink: 0;
+      color: var(--cream);
+    }
+
+    .logo-text {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      color: var(--cream);
+      font-size: 1.125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--blue-deeper) !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-size: 0.75rem !important;
+      transition: background 0.2s ease !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-light) !important;
+    }
+
+    @media (max-width: 767px) {
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .logo-text {
+        display: none;
+      }
+
+      .logo-mark {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+    }
+
+    /* ============================================
+       BUTTONS
+       ============================================ */
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--blue-deeper);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.875rem 2rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+    }
+
+    .btn-blue {
+      display: inline-block;
+      background: var(--blue-hero);
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.875rem 2rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-blue:hover {
+      background: var(--blue);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(29, 106, 173, 0.3);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      color: rgba(255, 255, 255, 0.85);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.875rem 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #FFFFFF;
+    }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      background: linear-gradient(165deg, var(--blue-hero) 0%, var(--blue-dark) 60%, var(--blue-deeper) 100%);
+      padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(8rem, 10vw, 10rem);
+      position: relative;
+      overflow: visible;
+    }
+
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      z-index: 1;
+      transform: translateY(1px);
+    }
+
+    .hero-wave svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero .container {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .hero-brand-intro {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .offer-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-body);
+      font-size: 0.625rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 3px;
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    .offer-pill--trial {
+      background: var(--gold);
+      color: var(--blue-deeper);
+    }
+
+    .offer-pill--launch {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+
+    .hero-brand-intro {
+      text-align: center;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-brand-eyebrow {
+      font-family: var(--font-body);
+      font-size: clamp(0.6875rem, 1.2vw, 0.8125rem);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-brand-intro h1 {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      line-height: 1.05;
+      color: #FFFFFF;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-brand-attribution {
+      font-family: var(--font-body);
+      font-size: clamp(0.75rem, 1.3vw, 0.9375rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--blue-light);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .hero h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.08;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h2 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.1875rem);
+      color: var(--blue-light);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .hero-trial-note {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 0.75rem;
+    }
+
+    .hero-image-area {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-image-placeholder {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .placeholder-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      opacity: 0.4;
+    }
+
+    .placeholder-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 0.5rem;
+    }
+
+    .placeholder-desc {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.4);
+      max-width: 280px;
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       SOCIAL PROOF STRIP
+       ============================================ */
+    .social-proof {
+      padding: clamp(1.5rem, 3vw, 2rem) 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--linen);
+    }
+
+    .social-proof .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem 3rem;
+      text-align: center;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .proof-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .proof-text {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ============================================
+       HOW IT WORKS -- 3 Service Modes
+       ============================================ */
+    .how-it-works {
+      background: var(--warm-white);
+    }
+
+    .how-it-works .container {
+      text-align: center;
+    }
+
+    .how-it-works .section-body {
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .modes-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    .mode-card {
+      background: var(--cream);
+      border: 1px solid var(--tan);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    }
+
+    .mode-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .mode-time {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .mode-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1rem;
+      color: var(--blue);
+    }
+
+    .mode-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      color: var(--blue-dark);
+      margin-bottom: 0.625rem;
+    }
+
+    .mode-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       THE HERBSTER SECTION
+       ============================================ */
+    .the-herbster {
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .the-herbster .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+      max-width: 1000px;
+    }
+
+    @media (min-width: 768px) {
+      .the-herbster .container {
+        grid-template-columns: 1fr 1.1fr;
+        gap: 3rem;
+      }
+    }
+
+    .herbster-image-placeholder {
+      background: linear-gradient(145deg, var(--blue-light), #EDF2F6);
+      border-radius: 12px;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .herbster-image-placeholder .placeholder-label,
+    .herbster-image-placeholder .placeholder-desc {
+      color: var(--blue-muted);
+      opacity: 0.6;
+    }
+
+    .herbster-content .section-body {
+      margin-bottom: 1rem;
+    }
+
+    .herbster-highlights {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .herbster-highlights li {
+      position: relative;
+      padding-left: 1.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .herbster-highlights li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ============================================
+       PULL QUOTE BANNER
+       ============================================ */
+    .pull-quote {
+      background: var(--blue-dark);
+      padding: clamp(2.5rem, 6vw, 4rem) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pull-quote::before {
+      content: '\201C';
+      position: absolute;
+      top: -0.2em;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-size: 18rem;
+      color: rgba(196, 168, 130, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .pull-quote blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 3.5vw, 2.25rem);
+      color: var(--cream);
+      line-height: 1.35;
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .pull-quote .gold-accent {
+      color: var(--gold);
+    }
+
+    /* ============================================
+       MEMBERSHIP PRICING -- Three Tier Cards
+       ============================================ */
+    .pricing-section {
+      background: var(--blue-light);
+    }
+
+    .pricing-section .container {
+      max-width: 1100px;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .pricing-header .section-label,
+    .pricing-header .section-headline {
+      text-align: center;
+    }
+
+    .pricing-header .section-body {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .tiers-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    .tier-card {
+      background: var(--cream);
+      border-radius: 12px;
+      border: 2px solid var(--tan);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    }
+
+    .tier-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .tier-card--popular {
+      border-color: var(--blue);
+      position: relative;
+      overflow: visible;
+    }
+
+    .tier-popular-badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--blue);
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .tier-header {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-deeper));
+      padding: 1.25rem 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .tier-card--popular .tier-header {
+      background: linear-gradient(135deg, var(--blue-hero), var(--blue-dark));
+    }
+
+    .tier-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: #FFFFFF;
+      margin-bottom: 0.25rem;
+    }
+
+    .tier-tagline {
+      font-size: 0.8125rem;
+      color: var(--blue-muted);
+      margin-bottom: 1rem;
+    }
+
+    .tier-price {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+
+    .tier-price span {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--blue-muted);
+      font-weight: 400;
+    }
+
+    .tier-annual {
+      font-size: 0.6875rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-top: 0.375rem;
+    }
+
+    .tier-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier-features {
+      list-style: none;
+      flex: 1;
+    }
+
+    .tier-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.4rem 0;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      border-bottom: 1px solid var(--linen);
+    }
+
+    .tier-features li:last-child {
+      border-bottom: none;
+    }
+
+    .tier-features li svg {
+      width: 16px;
+      height: 16px;
+      color: var(--blue);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .tier-cta {
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+
+    .tier-cta a {
+      display: block;
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .tier-cta--primary a {
+      background: var(--blue-hero);
+      color: #FFFFFF;
+    }
+
+    .tier-cta--primary a:hover {
+      background: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .tier-cta--default a {
+      background: var(--linen);
+      color: var(--blue-dark);
+    }
+
+    .tier-cta--default a:hover {
+      background: var(--tan);
+      transform: translateY(-1px);
+    }
+
+    .pricing-footnote {
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+      color: var(--warm-gray);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* Annual savings callout */
+    .annual-savings {
+      background: linear-gradient(135deg, #FDFAF3, #FDF6E8);
+      border: 1px solid var(--gold-glow);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .annual-savings h4 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      color: var(--dark-roast);
+      margin-bottom: 0.375rem;
+    }
+
+    .annual-savings p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .annual-savings strong {
+      color: var(--gold-text);
+    }
+
+    /* ============================================
+       APP EXPERIENCE SECTION
+       ============================================ */
+    .app-experience {
+      background: var(--warm-white);
+    }
+
+    .app-experience .container {
+      max-width: 1000px;
+    }
+
+    .app-experience-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .app-experience-header .section-body {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .app-features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .app-features-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .app-feature-card {
+      background: var(--cream);
+      border: 1px solid var(--tan);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .app-mockup-placeholder {
+      background: linear-gradient(145deg, var(--blue-light), #E0EBF5);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .app-mockup-placeholder .placeholder-label {
+      color: var(--blue);
+      opacity: 0.5;
+    }
+
+    .app-mockup-placeholder .placeholder-desc {
+      color: var(--blue-muted);
+      opacity: 0.7;
+      font-size: 0.75rem;
+    }
+
+    .app-feature-content {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .app-feature-content h4 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      color: var(--blue-dark);
+      margin-bottom: 0.375rem;
+    }
+
+    .app-feature-content p {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ============================================
+       MID-PAGE CTA
+       ============================================ */
+    .mid-cta {
+      padding: clamp(2rem, 5vw, 3rem) 0;
+      text-align: center;
+    }
+
+    .mid-cta .container {
+      max-width: 600px;
+    }
+
+    .mid-cta p {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+      line-height: 1.35;
+    }
+
+    /* ============================================
+       FAQ SECTION
+       ============================================ */
+    .faq {
+      background: var(--cream);
+    }
+
+    .faq .container {
+      max-width: 760px;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-list {
+      list-style: none;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--tan);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.25rem 2.5rem 1.25rem 0;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: left;
+      cursor: pointer;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--blue);
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .faq-item.active .faq-question::after {
+      content: '\2212';
+      transform: translateY(-50%);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out);
+    }
+
+    .faq-answer-inner {
+      padding: 0 0 1.25rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       WAITLIST FORM SECTION
+       ============================================ */
+    .waitlist {
+      background: linear-gradient(170deg, var(--blue-dark), var(--blue-deeper));
+      position: relative;
+    }
+
+    .waitlist .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .waitlist .container {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+    }
+
+    .waitlist-info .section-label {
+      color: var(--gold);
+    }
+
+    .waitlist-info .section-headline {
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .waitlist-info .section-body {
+      color: var(--tan);
+      margin-bottom: 2rem;
+    }
+
+    .waitlist-perks {
+      list-style: none;
+    }
+
+    .waitlist-perks li {
+      position: relative;
+      padding-left: 1.75rem;
+      margin-bottom: 0.875rem;
+      font-size: 0.9375rem;
+      color: var(--tan);
+      line-height: 1.6;
+    }
+
+    .waitlist-perks li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .waitlist-form-wrap {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .waitlist-form-title {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      color: var(--cream);
+      margin-bottom: 0.375rem;
+    }
+
+    .waitlist-form-sub {
+      font-size: 0.8125rem;
+      color: var(--blue-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0.375rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: var(--cream);
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    .form-group select option {
+      background: var(--blue-deeper);
+      color: var(--cream);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-error {
+      font-size: 0.75rem;
+      color: #F87171;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .form-group.has-error input,
+    .form-group.has-error select {
+      border-color: #F87171;
+    }
+
+    .form-group.has-error .form-error {
+      display: block;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--blue-deeper);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-disclaimer {
+      font-size: 0.6875rem;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .form-success.visible {
+      display: block;
+    }
+
+    .form-success-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      color: var(--gold);
+    }
+
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      font-size: 0.9375rem;
+      color: var(--blue-muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .site-footer {
+      background: #0A2E4D;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .footer-logo {
+      width: 2.25rem;
+      height: 2.25rem;
+      margin: 0 auto 0.5rem;
+      color: var(--blue-muted);
+    }
+
+    .footer-brand {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: 1.125rem;
+      color: var(--blue-light);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.375rem;
+    }
+
+    .footer-location {
+      font-size: 0.8125rem;
+      color: var(--blue-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-link {
+      font-size: 0.8125rem;
+      color: var(--blue-muted);
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--gold);
+    }
+
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--blue);
+      margin: 1rem auto;
+    }
+
+    .footer-service {
+      font-size: 0.75rem;
+      color: var(--blue-muted);
+      opacity: 0.6;
+      margin-top: 0.75rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      font-size: 0.8125rem;
+      color: var(--blue-muted);
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover {
+      color: var(--gold);
+    }
+
+    /* ============================================
+       MOBILE REFINEMENTS
+       ============================================ */
+    @media (max-width: 479px) {
+      .section {
+        padding: clamp(2.5rem, 7vw, 4rem) 0;
+      }
+
+      .hero-image-placeholder {
+        min-height: 240px;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+      }
+
+      .hero-cta-group .btn-primary,
+      .hero-cta-group .btn-secondary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .herbster-image-placeholder {
+        min-height: 200px;
+      }
+
+      .form-group input,
+      .form-group select {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.875rem;
+      }
+
+      .pull-quote blockquote {
+        padding: 0 1rem;
+        font-size: clamp(1.125rem, 5vw, 1.5rem);
+      }
+
+      .mid-cta p {
+        font-size: 1.125rem;
+      }
+
+    }
+
+    @media (max-width: 767px) {
+      .tier-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       STICKY CTA BAR
+       ========================================== -->
+  <div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Join waitlist">
+    <p>7-day free trial — starting at $30/mo</p>
+    <a href="#waitlist" class="btn-sticky">Join the Waitlist</a>
+  </div>
+
+  <!-- ==========================================
+       TOP BAR / NAVIGATION
+       ========================================== -->
+  <header class="top-bar" role="banner">
+    <div class="container">
+      <a href="#" class="logo-group">
+        <svg class="logo-mark" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g><path d="M413.32,147.34v-34.36h-137.42v34.36h51.53v85.89h-154.6v-85.89h51.53v-34.36H86.94v34.36h51.53v206.14h-51.19v34.36h135.02v-34.36h-49.47v-85.89h154.6l-71.25,47.5c-3.78,2.52-6.06,6.77-6.06,11.32v112.97l73.88-49.25c2.23-1.49,4.86-2.28,7.54-2.28h79.71v-34.36h-49.47v-206.14h51.53ZM324.4,381.68l-67.47,44.98v-100.26c0-2.27,1.14-4.4,3.03-5.66l67.47-44.98v100.26c0,2.27-1.14,4.4-3.03,5.66Z" fill="currentColor"/><path d="M272.43,370.65c0,3.16,3.81,5.73,3.81,5.73,0,0,3.81-2.56,3.81-5.73s-3.81-5.73-3.81-5.73c0,0-3.81,2.56-3.81,5.73Z" fill="currentColor"/></g>
+          <path d="M480.97,250c0,127.56-103.41,230.97-230.97,230.97S19.03,377.56,19.03,250,122.44,19.03,250,19.03s230.97,103.41,230.97,230.97ZM250,0C111.93,0,0,111.93,0,250s111.93,250,250,250,250-111.93,250-250S388.07,0,250,0Z" fill="currentColor"/>
+        </svg>
+        <div class="logo-text">Herb's House Coffee</div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#membership">Membership</a>
+        <a href="#the-herbster">The Herbster</a>
+        <a href="#faq">FAQ</a>
+        <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO
+       ========================================== -->
+  <section class="hero" id="hero" aria-labelledby="hero-heading">
+    <div class="container">
+      <div class="hero-brand-intro">
+        <p class="hero-brand-eyebrow">Introducing</p>
+        <h1 id="hero-heading">Herb's at the Curb</h1>
+        <p class="hero-brand-attribution">From Herb's House Coffee</p>
+      </div>
+      <div class="hero-content">
+        <div class="hero-pills">
+          <span class="offer-pill offer-pill--trial">7-Day Free Trial</span>
+          <span class="offer-pill offer-pill--launch">Park Cities Exclusive</span>
+        </div>
+        <h2>Made Fresh<br><em>At Your Door.</em></h2>
+        <p class="hero-sub">A full-service craft coffee shop pulls up to your home and makes your drink right there. Not delivered across town in a bag. Made fresh. For you.</p>
+        <div class="hero-cta-group">
+          <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
+          <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+        </div>
+        <p class="hero-trial-note">For about $1 a day, we bring the coffee shop to you. Cancel anytime.</p>
+      </div>
+      <div class="hero-image-area">
+        <div class="hero-image-placeholder">
+          <svg class="placeholder-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: rgba(255, 255, 255, 0.5);">
+            <rect x="4" y="4" width="40" height="40" rx="4"/>
+            <circle cx="24" cy="20" r="6"/>
+            <path d="M8 38 l10-12 6 6 8-10 12 16"/>
+          </svg>
+          <p class="placeholder-label">Hero Photo</p>
+          <p class="placeholder-desc">The Herbster parked on a tree-lined Park Cities street. A family receiving craft coffee at their front door, morning light, smiles.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 Q180,100 360,70 T720,80 T1080,65 T1440,75 L1440,100 L0,100 Z" fill="#FFFFFF"/>
+        <path d="M0,60 Q180,100 360,70 T720,80 T1080,65 T1440,75" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- ==========================================
+         SOCIAL PROOF STRIP
+         ========================================== -->
+    <section class="social-proof fade-in" aria-label="Key highlights">
+      <div class="container">
+        <div class="proof-item">
+          <svg class="proof-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <span class="proof-text">Custom-Built Coffee Truck</span>
+        </div>
+        <div class="proof-item">
+          <svg class="proof-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <span class="proof-text">Park Cities & North Dallas</span>
+        </div>
+        <div class="proof-item">
+          <svg class="proof-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <span class="proof-text">7-Day Free Trial</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         HOW IT WORKS -- Three Service Modes
+         ========================================== -->
+    <section class="how-it-works section fade-in" id="how-it-works" aria-labelledby="how-heading">
+      <div class="container">
+        <p class="section-label">Three Ways to Get Your Coffee</p>
+        <h2 class="section-headline" id="how-heading">Your Coffee, Your Way</h2>
+        <p class="section-body">Every delivery app fails at coffee. Ice melts, hot drinks cool, foam separates. That is over. The Herbster comes to you and makes it fresh.</p>
+
+        <div class="modes-grid">
+          <!-- Proximity -->
+          <div class="mode-card fade-in">
+            <div class="mode-time">Every Morning</div>
+            <svg class="mode-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 4C16 4 10 10 10 18c0 10 14 22 14 22s14-12 14-22c0-8-6-14-14-14z"/>
+              <circle cx="24" cy="18" r="5"/>
+            </svg>
+            <h3>Proximity</h3>
+            <p>The Herbster stations at a local hub — schools, offices, parks. Walk up, grab your drink, start your morning right.</p>
+          </div>
+
+          <!-- On-Demand -->
+          <div class="mode-card fade-in">
+            <div class="mode-time">On Your Schedule</div>
+            <svg class="mode-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="6" width="32" height="36" rx="4"/>
+              <line x1="16" y1="14" x2="32" y2="14"/>
+              <line x1="16" y1="20" x2="28" y2="20"/>
+              <path d="M20 30l4 4 8-8"/>
+            </svg>
+            <h3>On-Demand</h3>
+            <p>Request delivery to your home whenever you want. The Herbster comes to you and makes your drinks fresh on the spot.</p>
+          </div>
+
+          <!-- Scheduled -->
+          <div class="mode-card fade-in">
+            <div class="mode-time">Set It & Forget It</div>
+            <svg class="mode-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="10" width="36" height="30" rx="3"/>
+              <line x1="6" y1="18" x2="42" y2="18"/>
+              <line x1="16" y1="6" x2="16" y2="14"/>
+              <line x1="32" y1="6" x2="32" y2="14"/>
+              <path d="M20 28l3 3 6-6"/>
+            </svg>
+            <h3>Scheduled</h3>
+            <p>Reserve a weekly delivery slot. Set it and forget it. Your favorite coffee shows up at the same time, every week. Mid-Tier & Household only.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PULL QUOTE
+         ========================================== -->
+    <section class="pull-quote fade-in" aria-label="Featured quote">
+      <div class="container">
+        <blockquote>
+          Your neighborhood coffee shop, <span class="gold-accent">on wheels.</span>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         THE HERBSTER
+         ========================================== -->
+    <section class="the-herbster section fade-in" id="the-herbster" aria-labelledby="herbster-heading">
+      <div class="container">
+        <div class="herbster-image-placeholder">
+          <svg class="placeholder-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue-muted); opacity: 0.5;">
+            <rect x="4" y="4" width="40" height="40" rx="4"/>
+            <circle cx="24" cy="20" r="6"/>
+            <path d="M8 38 l10-12 6 6 8-10 12 16"/>
+          </svg>
+          <p class="placeholder-label" style="color: var(--blue-muted); opacity: 0.6;">Photo</p>
+          <p class="placeholder-desc" style="color: var(--blue-muted); opacity: 0.5;">The Herbster — custom vintage-styled coffee truck, polished, parked in a beautiful tree-lined neighborhood. Barista visible through the service window.</p>
+        </div>
+        <div class="herbster-content">
+          <p class="section-label">Meet The Herbster</p>
+          <h2 class="section-headline" id="herbster-heading">A One-of-a-Kind Coffee Shop On Wheels</h2>
+          <p class="section-body">This is not a food truck. The Herbster is a custom-built, vintage-styled mobile coffee shop with a full espresso bar, cold brew dispensers, and professional barista crew. Obsessive attention to detail at every touchpoint.</p>
+          <ul class="herbster-highlights">
+            <li>Full espresso and beverage production station</li>
+            <li>Cold brew dispensers, hot and sparkling water systems</li>
+            <li>Warming drawers for fresh pastries and breakfast items</li>
+            <li>GPS tracking so you can watch it arrive in real time</li>
+            <li>Uniformed crew — professional, friendly, always smiling</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         MID-PAGE CTA
+         ========================================== -->
+    <section class="mid-cta fade-in">
+      <div class="container">
+        <p>The anti-delivery app. Every drink made fresh, right at your door.</p>
+        <a href="#waitlist" class="btn-blue">Join the Waitlist</a>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         MEMBERSHIP PRICING TIERS
+         ========================================== -->
+    <section class="pricing-section section fade-in" id="membership" aria-labelledby="pricing-heading">
+      <div class="container">
+        <div class="pricing-header">
+          <p class="section-label">Membership Tiers</p>
+          <h2 class="section-headline" id="pricing-heading">Pick Your Perfect Plan</h2>
+          <p class="section-body">Every membership starts with a 7-day free trial. No commitment, cancel anytime. Try the full experience before you decide.</p>
+        </div>
+
+        <div class="tiers-grid">
+          <!-- Baseline -->
+          <div class="tier-card">
+            <div class="tier-header">
+              <h3 class="tier-name">Baseline</h3>
+              <p class="tier-tagline">For the curious coffee lover</p>
+              <div class="tier-price">$30 <span>/month</span></div>
+              <p class="tier-annual">Annual: ~$306/yr (save ~$54)</p>
+            </div>
+            <div class="tier-body">
+              <ul class="tier-features">
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  Order at any proximity location via the app
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  On-demand delivery ordering
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  <strong>10% member discount</strong> on all food & beverage
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  Exclusive seasonal menu items
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  Real-time order tracking & push notifications
+                </li>
+              </ul>
+              <div class="tier-cta tier-cta--default">
+                <a href="#waitlist">Join the Waitlist</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mid-Tier (Popular) -->
+          <div class="tier-card tier-card--popular">
+            <span class="tier-popular-badge">Most Popular</span>
+            <div class="tier-header">
+              <h3 class="tier-name">Mid-Tier</h3>
+              <p class="tier-tagline">For the daily ritual lovers</p>
+              <div class="tier-price">$45 <span>/month</span></div>
+              <p class="tier-annual">Annual: ~$459/yr (save ~$81)</p>
+            </div>
+            <div class="tier-body">
+              <ul class="tier-features">
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  Everything in Baseline, plus:
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  <strong>1 scheduled delivery per week</strong> — pick your day & time
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  <strong>15% member discount</strong> on all food & beverage
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  Custom H@C branded tumbler included
+                </li>
+              </ul>
+              <div class="tier-cta tier-cta--primary">
+                <a href="#waitlist">Join the Waitlist</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Household -->
+          <div class="tier-card">
+            <div class="tier-header">
+              <h3 class="tier-name">Household</h3>
+              <p class="tier-tagline">Coffee for the whole family</p>
+              <div class="tier-price">$60 <span>/month</span></div>
+              <p class="tier-annual">Annual: ~$612/yr (save ~$108)</p>
+            </div>
+            <div class="tier-body">
+              <ul class="tier-features">
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  Everything in Mid-Tier, plus:
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  <strong>2 scheduled deliveries per week</strong>
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  <strong>Up to 5 drinks per scheduled order</strong>
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  <strong>20% member discount</strong> on all food & beverage
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+                  2 custom H@C branded tumblers included
+                </li>
+              </ul>
+              <div class="tier-cta tier-cta--default">
+                <a href="#waitlist">Join the Waitlist</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Annual Savings Callout -->
+        <div class="annual-savings">
+          <h4>Save with Annual Plans</h4>
+          <p>Lock in your rate with an annual plan and get <strong>approximately 2 months free</strong>. That is up to $108 saved per year on the Household plan.</p>
+        </div>
+
+        <p class="pricing-footnote">All plans include a 7-day free trial. Cancel anytime — no long-term contracts required. Pricing during Park Cities pilot launch; subject to change for new memberships.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         APP EXPERIENCE
+         ========================================== -->
+    <section class="app-experience section fade-in" id="app" aria-labelledby="app-heading">
+      <div class="container">
+        <div class="app-experience-header">
+          <p class="section-label">The App</p>
+          <h2 class="section-headline" id="app-heading">Everything In Your Pocket</h2>
+          <p class="section-body">Browse the menu, place orders, track The Herbster in real time, and manage your membership — all from one app.</p>
+        </div>
+
+        <div class="app-features-grid">
+          <div class="app-feature-card">
+            <div class="app-mockup-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue); opacity: 0.4;">
+                <rect x="12" y="4" width="24" height="40" rx="4"/>
+                <line x1="20" y1="38" x2="28" y2="38"/>
+              </svg>
+              <p class="placeholder-label">App Screenshot</p>
+              <p class="placeholder-desc">Live map showing The Herbster's location en route, with ETA countdown and order status badges</p>
+            </div>
+            <div class="app-feature-content">
+              <h4>Live Order Tracking</h4>
+              <p>Watch The Herbster approach in real time. Get push notifications when it is nearby and when your drink is ready.</p>
+            </div>
+          </div>
+
+          <div class="app-feature-card">
+            <div class="app-mockup-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue); opacity: 0.4;">
+                <rect x="12" y="4" width="24" height="40" rx="4"/>
+                <line x1="20" y1="38" x2="28" y2="38"/>
+              </svg>
+              <p class="placeholder-label">App Screenshot</p>
+              <p class="placeholder-desc">Full beverage menu with customization options: milk type, sweetness, size, toppings</p>
+            </div>
+            <div class="app-feature-content">
+              <h4>Full Menu & Customization</h4>
+              <p>Browse the full craft menu, customize every detail, and save your favorites for lightning-fast reorders.</p>
+            </div>
+          </div>
+
+          <div class="app-feature-card">
+            <div class="app-mockup-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue); opacity: 0.4;">
+                <rect x="12" y="4" width="24" height="40" rx="4"/>
+                <line x1="20" y1="38" x2="28" y2="38"/>
+              </svg>
+              <p class="placeholder-label">App Screenshot</p>
+              <p class="placeholder-desc">Weekly schedule view showing reserved delivery time slots with one-tap rescheduling</p>
+            </div>
+            <div class="app-feature-content">
+              <h4>Scheduled Deliveries</h4>
+              <p>Set your weekly delivery time and forget about it. Reschedule with one tap if plans change.</p>
+            </div>
+          </div>
+
+          <div class="app-feature-card">
+            <div class="app-mockup-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue); opacity: 0.4;">
+                <rect x="12" y="4" width="24" height="40" rx="4"/>
+                <line x1="20" y1="38" x2="28" y2="38"/>
+              </svg>
+              <p class="placeholder-label">App Screenshot</p>
+              <p class="placeholder-desc">Push notification: "The Herbster is 2 minutes away! Your oat milk latte is next up."</p>
+            </div>
+            <div class="app-feature-content">
+              <h4>Smart Notifications</h4>
+              <p>Know exactly when The Herbster is heading your way and when your drink is being made. No guessing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         MID-PAGE CTA #2
+         ========================================== -->
+    <section class="mid-cta fade-in">
+      <div class="container">
+        <p>Everyday luxury that you can feel good about.</p>
+        <a href="#waitlist" class="btn-blue">Start Your Free Trial</a>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FAQ
+         ========================================== -->
+    <section class="faq section fade-in" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="faq-header">
+          <p class="section-label">Common Questions</p>
+          <h2 class="section-headline" id="faq-heading">Got Questions? We've Got Answers.</h2>
+        </div>
+
+        <ul class="faq-list">
+          <li class="faq-item">
+            <button class="faq-question" aria-expanded="false">What exactly is Herb's at the Curb?</button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Herb's at the Curb is a membership-based premium coffee service. Instead of a coffee shop you go to, The Herbster — our custom-built vintage coffee truck — comes to you. We make every drink fresh at your door. No transport, no waiting, no compromises.
+              </div>
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <button class="faq-question" aria-expanded="false">Where is the service available?</button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                We are launching our pilot service in the Park Cities area and North Dallas (approximately a 2-3 mile radius). Future service areas will be determined by waitlist demand density — areas with concentrated interest get activated first.
+              </div>
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <button class="faq-question" aria-expanded="false">How does the 7-day free trial work?</button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Sign up for any membership tier and experience the full Herb's at the Curb service for 7 days, completely free. If it is not for you, cancel before the trial ends and you will not be charged. No risk, no hassle.
+              </div>
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <button class="faq-question" aria-expanded="false">What is the difference between the membership tiers?</button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                <strong>Baseline ($30/mo)</strong> gives you proximity and on-demand ordering with a 10% discount. <strong>Mid-Tier ($45/mo)</strong> adds one scheduled weekly delivery, a 15% discount, and a free branded tumbler. <strong>Household ($60/mo)</strong> includes two scheduled deliveries per week, up to 5 drinks per order, a 20% discount, and two free tumblers. All tiers include exclusive seasonal menu access.
+              </div>
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <button class="faq-question" aria-expanded="false">What is "proximity" service?</button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Each morning, The Herbster stations at partner locations around the service area — schools, office buildings, community hubs. You order through the app and walk up or drive up to grab your freshly made drink. Think of it as a pop-up coffee shop in your neighborhood.
+              </div>
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <button class="faq-question" aria-expanded="false">Can I cancel anytime?</button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Yes. All memberships are month-to-month by default. Cancel anytime and your service continues through the end of your current billing cycle. Annual plans offer savings of approximately 15-20% (about 2 months free).
+              </div>
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <button class="faq-question" aria-expanded="false">How is this different from DoorDash or Uber Eats?</button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Delivery apps send someone to pick up your coffee and drive it across town. By the time it arrives, the ice has melted, the hot drinks have cooled, and the foam is gone. Herb's at the Curb is the opposite: The Herbster comes to your location and makes your drink right there, fresh, in front of you. It is a service experience, not a delivery.
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         WAITLIST SIGNUP FORM
+         ========================================== -->
+    <section class="waitlist section" id="waitlist" aria-labelledby="waitlist-heading">
+      <div class="container">
+        <div class="waitlist-info">
+          <p class="section-label">Join the Waitlist</p>
+          <h2 class="section-headline" id="waitlist-heading">Be First In Line</h2>
+          <p class="section-body">We are launching in Park Cities this year. Waitlist members get early access, founding member perks, and first dibs on delivery time slots.</p>
+
+          <ul class="waitlist-perks">
+            <li>Early access before public launch</li>
+            <li>First pick of scheduled delivery time slots</li>
+            <li>Founding member pricing locked in</li>
+            <li>7-day free trial when we launch</li>
+            <li>Priority service area expansion notifications</li>
+          </ul>
+        </div>
+
+        <div class="waitlist-form-wrap">
+          <h3 class="waitlist-form-title">Get on the List</h3>
+          <p class="waitlist-form-sub">Takes 30 seconds. We will let you know the moment we launch.</p>
+
+          <form id="waitlistForm" novalidate>
+            <div class="form-row">
+              <div class="form-group" id="fnameGroup">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Jane" required autocomplete="given-name">
+                <p class="form-error">Please enter your first name.</p>
+              </div>
+              <div class="form-group" id="lnameGroup">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Smith" required autocomplete="family-name">
+                <p class="form-error">Please enter your last name.</p>
+              </div>
+            </div>
+
+            <div class="form-group" id="emailGroup">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
+              <p class="form-error">Please enter a valid email address.</p>
+            </div>
+
+            <div class="form-group" id="phoneGroup">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(214) 555-1234" autocomplete="tel">
+              <p class="form-error">Please enter a valid phone number.</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group" id="zipGroup">
+                <label for="zip">Zip Code</label>
+                <input type="text" id="zip" name="zip" placeholder="75205" required autocomplete="postal-code" maxlength="10">
+                <p class="form-error">Please enter your zip code.</p>
+              </div>
+              <div class="form-group" id="tierGroup">
+                <label for="tier">Interested In</label>
+                <select id="tier" name="tier">
+                  <option value="">Select a tier...</option>
+                  <option value="baseline">Baseline - $30/mo</option>
+                  <option value="midtier">Mid-Tier - $45/mo</option>
+                  <option value="household">Household - $60/mo</option>
+                  <option value="unsure">Not sure yet</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Join the Waitlist</button>
+            <p class="form-disclaimer">We will only use your info to keep you updated on Herb's at the Curb. No spam, ever. You can unsubscribe anytime.</p>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <svg class="form-success-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="32" r="28"/>
+              <path d="M20 32l8 8 16-16"/>
+            </svg>
+            <h3>You are on the list!</h3>
+            <p>Welcome to the Herb's at the Curb family. We will reach out as soon as we are ready to launch in your area. Keep an eye on your inbox.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <svg class="footer-logo" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g><path d="M413.32,147.34v-34.36h-137.42v34.36h51.53v85.89h-154.6v-85.89h51.53v-34.36H86.94v34.36h51.53v206.14h-51.19v34.36h135.02v-34.36h-49.47v-85.89h154.6l-71.25,47.5c-3.78,2.52-6.06,6.77-6.06,11.32v112.97l73.88-49.25c2.23-1.49,4.86-2.28,7.54-2.28h79.71v-34.36h-49.47v-206.14h51.53ZM324.4,381.68l-67.47,44.98v-100.26c0-2.27,1.14-4.4,3.03-5.66l67.47-44.98v100.26c0,2.27-1.14,4.4-3.03,5.66Z" fill="currentColor"/><path d="M272.43,370.65c0,3.16,3.81,5.73,3.81,5.73,0,0,3.81-2.56,3.81-5.73s-3.81-5.73-3.81-5.73c0,0-3.81,2.56-3.81,5.73Z" fill="currentColor"/></g>
+        <path d="M480.97,250c0,127.56-103.41,230.97-230.97,230.97S19.03,377.56,19.03,250,122.44,19.03,250,19.03s230.97,103.41,230.97,230.97ZM250,0C111.93,0,0,111.93,0,250s111.93,250,250,250,250-111.93,250-250S388.07,0,250,0Z" fill="currentColor"/>
+      </svg>
+      <p class="footer-brand">Herb's House Coffee</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#membership">Membership</a>
+        <a href="#the-herbster">The Herbster</a>
+        <a href="#faq">FAQ</a>
+        <a href="#waitlist">Join Waitlist</a>
+      </nav>
+      <div class="footer-divider"></div>
+      <p class="footer-location">Park Cities & North Dallas, Texas</p>
+      <a href="mailto:hello@herbshouse.io" class="footer-link">hello@herbshouse.io</a>
+      <p class="footer-service">Herb's at the Curb — Made Fresh At Your Door</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      /* ---- Fade-in on scroll ---- */
+      var fadeEls = document.querySelectorAll('.fade-in');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      fadeEls.forEach(function(el) { observer.observe(el); });
+
+      /* ---- Sticky CTA bar ---- */
+      var stickyCta = document.getElementById('stickyCta');
+      var heroSection = document.getElementById('hero');
+      var waitlistSection = document.getElementById('waitlist');
+
+      function updateSticky() {
+        var heroBottom = heroSection.getBoundingClientRect().bottom;
+        var waitlistTop = waitlistSection.getBoundingClientRect().top;
+        var windowH = window.innerHeight;
+
+        if (heroBottom < 0 && waitlistTop > windowH) {
+          stickyCta.classList.add('visible');
+        } else {
+          stickyCta.classList.remove('visible');
+        }
+      }
+
+      window.addEventListener('scroll', updateSticky, { passive: true });
+      updateSticky();
+
+      /* ---- FAQ accordion ---- */
+      var faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(function(item) {
+        var btn = item.querySelector('.faq-question');
+        var answer = item.querySelector('.faq-answer');
+
+        btn.addEventListener('click', function() {
+          var isOpen = item.classList.contains('active');
+
+          // Close all
+          faqItems.forEach(function(other) {
+            other.classList.remove('active');
+            other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            other.querySelector('.faq-answer').style.maxHeight = null;
+            other.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+          });
+
+          // Open clicked (if it was closed)
+          if (!isOpen) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            answer.setAttribute('aria-hidden', 'false');
+          }
+        });
+      });
+
+      /* ---- Form validation & submission ---- */
+      var form = document.getElementById('waitlistForm');
+      var successEl = document.getElementById('formSuccess');
+
+      function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function validatePhone(phone) {
+        if (!phone) return true; // optional field
+        var digits = phone.replace(/\D/g, '');
+        return digits.length >= 10 && digits.length <= 11;
+      }
+
+      function showError(groupId) {
+        document.getElementById(groupId).classList.add('has-error');
+      }
+
+      function clearErrors() {
+        document.querySelectorAll('.form-group').forEach(function(g) {
+          g.classList.remove('has-error');
+        });
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        clearErrors();
+
+        var fname = document.getElementById('fname').value.trim();
+        var lname = document.getElementById('lname').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var phone = document.getElementById('phone').value.trim();
+        var zip = document.getElementById('zip').value.trim();
+
+        var valid = true;
+
+        if (!fname) { showError('fnameGroup'); valid = false; }
+        if (!lname) { showError('lnameGroup'); valid = false; }
+        if (!email || !validateEmail(email)) { showError('emailGroup'); valid = false; }
+        if (!validatePhone(phone)) { showError('phoneGroup'); valid = false; }
+        if (!zip) { showError('zipGroup'); valid = false; }
+
+        if (!valid) return;
+
+        // Show success
+        form.style.display = 'none';
+        successEl.classList.add('visible');
+
+        // Scroll to success message
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      /* ---- Smooth scroll for anchor links ---- */
+      document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            var offset = 60; // account for sticky nav
+            var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
