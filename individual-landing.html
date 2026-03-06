@@ -1540,6 +1540,33 @@
         max-width: 420px;
         margin: 0 auto;
       }
+
+      /* --- Change 1: Sticky bottom nav always visible on mobile --- */
+      body {
+        padding-bottom: 60px;
+      }
+
+      .sticky-cta {
+        transform: translateY(0) !important;
+      }
+
+      /* --- Change 2: Reorder hero on mobile --- */
+      .hero-brand-intro {
+        order: 1;
+      }
+
+      .hero-image-area {
+        order: 2;
+      }
+
+      .hero-content {
+        order: 3;
+      }
+
+      /* --- Change 3: Hide hero "Join the Waitlist" on mobile (sticky bar handles it) --- */
+      .hero-cta-group .btn-primary {
+        display: none;
+      }
     }
   </style>
 </head>
